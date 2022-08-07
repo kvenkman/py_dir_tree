@@ -2,10 +2,9 @@ Print directory structure for requested folder or pipe it to an output file.
 
 For example, 
 ```
-> python pdt.py .
+> python pdt\pdt.py .
 -\
  |-LICENSE.txt
- |-pdt.py
  |-README.md
  |-test_file.txt
  |-__init__.py
@@ -35,13 +34,16 @@ For example,
  | |-refs\
  | | |-heads\
  | | |-tags\
+ |-pdt\
+ | |-pdt.py
+ | |-__init__.py
 ```
 or the output can be piped to a file:
 ```
 > python pdt.py . -o test_output
 > 
 ```
-The script also accepts a list of arguments:
+The script accepts a list of arguments:
 ```
 > python pdt.py -h
 usage: pdt.py [-h] [-p PATH] [-o OUTPUT_FILE] [-d DEPTH] [-f] path
@@ -62,4 +64,20 @@ optional arguments:
                         Maximum depth to recurse (default: 5). Set to -1 to
                         recurse all the way to the bottom
   -f, --filter-hidden   Filter hidden files and folders (default: False)
+  ```
+  Lastly, it can also be installed:
+  ```
+  pip install .
+  ```
+  and can be imported in Python:
+  ```
+>>> from pdt.pdt import create_tree_dir
+>>> create_dir_tree(filter_hidden=True)
+-\
+ |-LICENSE.txt
+ |-README.md
+ |-setup.py
+ |-pdt\
+ | |-pdt.py
+ | |-__init__.py
   ```
