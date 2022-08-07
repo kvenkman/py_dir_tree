@@ -36,6 +36,11 @@ For example,
  | | |-heads\
  | | |-tags\
 ```
+or the output can be piped to a file:
+```
+> python pdt.py . -o test_output
+> 
+```
 The script also accepts a list of arguments:
 ```
 > python pdt.py -h
