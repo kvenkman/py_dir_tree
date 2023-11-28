@@ -12,39 +12,57 @@ def return_current_structure(this_path, current_depth, max_depth, filter_hidden=
     if current_depth > max_depth:
         return ''
     
-    current_file_spacing = ' │'*(current_depth - 1)
-    current_folder_spacing = ' │'*(current_depth-2)
+    if current_depth > 0:
+        current_file_spacing = '│\t'*max(0, (current_depth))
+        current_folder_spacing = '│\t'*(max(0, current_depth))
+    else:
+        current_file_spacing = ''
+        current_folder_spacing = ''
+
     files_and_folders = list(this_path.glob('*'))
-    files = [f.name for f in files_and_folders if not f.is_dir()]
-    folders = [f for f in files_and_folders if f.is_dir()]
+
+    files = []
+    folders = []
+
+    for f in files_and_folders:
+        if not f.is_dir():
+            files.append(f.name)
+        else:
+            folders.append(f)
 
     if filter_hidden:
         files = list(filter(filter_hidden_files, files))
         folders = list(filter(filter_hidden_folders, folders))
 
-    subtree_struct = f'{current_folder_spacing}├─ {this_path.name}{os.path.sep}\n'
+    if current_depth == 0:
+        subtree_struct = [f'{this_path.name}{os.path.sep}\n']
+    else:
+        subtree_struct = [f'{current_folder_spacing}├─ {this_path.name}{os.path.sep}\n']
 
-    for f in files:
-        subtree_struct += f'{current_file_spacing}├─ {f}\n'
+    for f in sorted(files):
+        subtree_struct.append(f'{current_file_spacing}├─ {f}\n')
     
     if len(folders) > 0:
-        for f in sorted(folders):
+        for fcount, f in enumerate(sorted(folders)):
             _s = return_current_structure(f, current_depth+1, max_depth, filter_hidden)
             
-            subtree_struct += _s
-        
-    return subtree_struct
-
-def create_dir_tree(dirpath=Path('.'), output_path=None, max_depth=5, filter_hidden=False):
-
-    current_depth = 0
-    tree_structure = return_current_structure(dirpath, current_depth+1, max_depth, filter_hidden)
+            if fcount == len(folders):
+                _s = _s.split("\n")
+                _s[0] = _s[0].replace("├─", "└─")
+                _s = '\n'.join(_s)
+            subtree_struct.append(_s)
     
-    if output_path is not None:
-        with open(output_path[0], 'w') as outf:
-            outf.write(tree_structure)
-    else:
-        print(tree_structure)
+    temp_subtree = subtree_struct[-1].split("\n")
+    
+    for temp_subtree_count, t in enumerate(temp_subtree):
+        if temp_subtree_count == 0:
+            temp_subtree[temp_subtree_count] = temp_subtree[temp_subtree_count].replace("├─", "└─")
+        else:
+            temp_subtree[temp_subtree_count] = temp_subtree[temp_subtree_count].replace("│", " ", 1)
+    subtree_struct[-1] = "\n".join(temp_subtree)
+    
+
+    return ''.join(subtree_struct)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Print directory structure for requested folder or pipe it to a folder')
@@ -61,4 +79,11 @@ if __name__ == '__main__':
     max_depth = args.depth[0]
     filter_hidden = args.filter_hidden
 
-    create_dir_tree(dirpath, output_path, max_depth, filter_hidden)
+    current_depth = 0
+    tree_structure = return_current_structure(dirpath, current_depth, max_depth, filter_hidden)
+
+    if output_path is not None:
+        with open(output_path[0], 'w') as outf:
+            outf.write(tree_structure)
+    else:
+        print(tree_structure)
