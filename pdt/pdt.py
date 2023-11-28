@@ -12,8 +12,8 @@ def return_current_structure(this_path, current_depth, max_depth, filter_hidden=
     if current_depth > max_depth:
         return ''
     
-    current_file_spacing = ' |'*current_depth
-    current_folder_spacing = ' |'*(current_depth-1)
+    current_file_spacing = ' │'*(current_depth - 1)
+    current_folder_spacing = ' │'*(current_depth-2)
     files_and_folders = list(this_path.glob('*'))
     files = [f.name for f in files_and_folders if not f.is_dir()]
     folders = [f for f in files_and_folders if f.is_dir()]
@@ -22,10 +22,10 @@ def return_current_structure(this_path, current_depth, max_depth, filter_hidden=
         files = list(filter(filter_hidden_files, files))
         folders = list(filter(filter_hidden_folders, folders))
 
-    subtree_struct = f'{current_folder_spacing}-{this_path.name}{os.path.sep}\n'
+    subtree_struct = f'{current_folder_spacing}├─ {this_path.name}{os.path.sep}\n'
 
     for f in files:
-        subtree_struct += f'{current_file_spacing}-{f}\n'
+        subtree_struct += f'{current_file_spacing}├─ {f}\n'
     
     if len(folders) > 0:
         for f in sorted(folders):
