@@ -25,18 +25,18 @@ For example,
  │   │   ├─ pre-receive.sample
  │   │   ├─ prepare-commit-msg.sample
  │   │   ├─ push-to-checkout.sample
- │   │   ├─ update.sample
+ │   │   └─ update.sample
  │   ├─ info\
- │   │   ├─ exclude
+ │   │   └─ exclude
  │   ├─ objects\
  │   │   ├─ info\
- │   │   ├─ pack\
+ │   │   └─ pack\
  │   ├─ refs\
  │   │   ├─ heads\
- │   │   ├─ tags\
- ├─ pdt\
- │   ├─ pdt.py
- │   ├─ __init__.py
+ │   │   └─ tags\
+ └─ pdt\
+     ├─ pdt.py
+     └─ __init__.py
 ```
 or the output can be piped to a file:
 ```
