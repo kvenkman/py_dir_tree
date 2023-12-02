@@ -4,39 +4,39 @@ For example,
 ```
 > python pdt\pdt.py .
 -\
- |-LICENSE.txt
- |-README.md
- |-test_file.txt
- |-__init__.py
- |-.git\
- | |-config
- | |-description
- | |-HEAD
- | |-hooks\
- | | |-applypatch-msg.sample
- | | |-commit-msg.sample
- | | |-fsmonitor-watchman.sample
- | | |-post-update.sample
- | | |-pre-applypatch.sample
- | | |-pre-commit.sample
- | | |-pre-merge-commit.sample
- | | |-pre-push.sample
- | | |-pre-rebase.sample
- | | |-pre-receive.sample
- | | |-prepare-commit-msg.sample
- | | |-push-to-checkout.sample
- | | |-update.sample
- | |-info\
- | | |-exclude
- | |-objects\
- | | |-info\
- | | |-pack\
- | |-refs\
- | | |-heads\
- | | |-tags\
- |-pdt\
- | |-pdt.py
- | |-__init__.py
+ ├─ LICENSE.txt
+ ├─ README.md
+ ├─ test_file.txt
+ ├─ __init__.py
+ ├─ .git\
+ │   ├─ config
+ │   ├─ description
+ │   ├─ HEAD
+ │   ├─ hooks\
+ │   │   ├─ applypatch-msg.sample
+ │   │   ├─ commit-msg.sample
+ │   │   ├─ fsmonitor-watchman.sample
+ │   │   ├─ post-update.sample
+ │   │   ├─ pre-applypatch.sample
+ │   │   ├─ pre-commit.sample
+ │   │   ├─ pre-merge-commit.sample
+ │   │   ├─ pre-push.sample
+ │   │   ├─ pre-rebase.sample
+ │   │   ├─ pre-receive.sample
+ │   │   ├─ prepare-commit-msg.sample
+ │   │   ├─ push-to-checkout.sample
+ │   │   ├─ update.sample
+ │   ├─ info\
+ │   │   ├─ exclude
+ │   ├─ objects\
+ │   │   ├─ info\
+ │   │   ├─ pack\
+ │   ├─ refs\
+ │   │   ├─ heads\
+ │   │   ├─ tags\
+ ├─ pdt\
+ │   ├─ pdt.py
+ │   ├─ __init__.py
 ```
 or the output can be piped to a file:
 ```
@@ -74,10 +74,10 @@ optional arguments:
 >>> from pdt.pdt import create_tree_dir
 >>> create_dir_tree(filter_hidden=True)
 -\
- |-LICENSE.txt
- |-README.md
- |-setup.py
- |-pdt\
- | |-pdt.py
- | |-__init__.py
+ ├─ LICENSE.txt
+ ├─ README.md
+ ├─ setup.py
+ ├─ pdt\
+ │   ├─ pdt.py
+ │   ├─ __init__.py
   ```
