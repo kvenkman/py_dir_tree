@@ -31,9 +31,9 @@ For example,
  │   ├─ objects\
  │   │   ├─ info\
  │   │   └─ pack\
- │   ├─ refs\
- │   │   ├─ heads\
- │   │   └─ tags\
+ │   └─ refs\
+ │       ├─ heads\
+ │       └─ tags\
  └─ pdt\
      ├─ pdt.py
      └─ __init__.py
