@@ -71,13 +71,29 @@ optional arguments:
   ```
   and can be imported in Python:
   ```
->>> from pdt.pdt import create_tree_dir
->>> create_dir_tree(filter_hidden=True)
--\
- ├─ LICENSE.txt
- ├─ README.md
- ├─ setup.py
- ├─ pdt\
- │   ├─ pdt.py
- │   ├─ __init__.py
+>>> from pathlib import Path
+>>> from pdt.pdt import create_dir_tree
+>>> this_path, current_depth, max_depth, total_folders, folder_count, current_depth_prefix, filter_hidden = Path('.'), 0, 2, 1, 1, '', True
+>>> create_dir_tree(this_path, current_depth, max_depth, total_folders, folder_count, current_depth_prefix, filter_hidden)
+\
+├─ LICENSE.txt
+├─ README.md
+├─ setup.py
+├─ build\
+│       └─ lib\
+├─ pdt\
+│       ├─ __init__.py
+│       ├─ pdt.py
+│       └─ __pycache__\
+│               ├─ __init__.cpython-37.pyc
+│               ├─ __init__.cpython-39.pyc
+│               ├─ pdt.cpython-37.pyc
+│               └─ pdt.cpython-39.pyc
+├─ pdt.egg-info\
+│       ├─ PKG-INFO
+│       ├─ SOURCES.txt
+│       ├─ dependency_links.txt
+│       └─ top_level.txt
+└─ __pycache__\
+        └─ pdt.cpython-37.pyc
   ```
